@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="./styles/style.css">
     <title>Tienda-Virtual</title>
 </head>
 <body>
-    <h1>Hola</h1>
+    <div class="">
+        <h1>Sin Equipo</h1>
+    </div>
