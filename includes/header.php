@@ -6,4 +6,4 @@
     <title>Tienda-Virtual</title>
 </head>
 <body>
-    
+    <h1>Hola</h1>
