@@ -1,5 +1,5 @@
 <?php
-    include_once "../model/conexion.php";
+    require_once  '../config/conexion.php';
 ?>
 
 <!DOCTYPE html>

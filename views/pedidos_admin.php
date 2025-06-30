@@ -20,7 +20,7 @@
         <input type="submit" value="filtrar"><br>
 
         <?php   
-        require_once "../controller/filtro_pedidos.php";
+        require_once "../controllers/filtro_pedidos.php";
         
         while($data = $sql->fetch_object()){ ?><!--esto es lo mismo que en el historial, muestra los datos que se sacan despues de hacer la consulta-->
             
