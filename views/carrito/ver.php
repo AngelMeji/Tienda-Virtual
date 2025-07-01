@@ -29,6 +29,13 @@
                     </td>
                 </tr>
                 <?php $totalCarrito += $item['precio'] * $item['cantidad']; ?> <!-- Acumula el total del carrito sumando el total de este producto -->
+
+                <!--Botones para aumentar o disminuir la cantidad del producrto-->
+                <button type="submit" name="aumentar">+</button>
+                <?= $_SESSION["contador"]?>
+                <button type="submit" name="disminuir">-</button>
+
+                <button type="submit" name="eliminar">X</button>
             <?php endforeach; ?>
         </tbody>
         <tfoot>

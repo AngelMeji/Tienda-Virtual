@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 require_once __DIR__ . '/../models/Producto.php';
 
 
@@ -68,4 +70,18 @@ class CarritoController {
         unset($_SESSION['carrito']); // Elimina toda la variable de sesión del carrito
         header("Location: index.php?controller=carrito&action=ver");  // Redirecciona a la vista del carrito (que ahora estará vacío)
     }
+
+    public function cantidadProductos(){
+        if(!isset($_SESSION["contador"])){
+            $_SESSION["contador"] = 0;
+        }
+        
+        if(isset($_POST["aumentar"])){
+            $_SESSION["contador"]++;
+        }elseif(isset($_POST["disminuir"])){
+            $_SESSION["contador"]--;
+        }
+    }
+
+    
 }
