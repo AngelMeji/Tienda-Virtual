@@ -11,6 +11,22 @@ $categorias = Categoria::getAll(); // Se obtiene el resultado de todas las categ
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/styles.css">
     <title>GTA vehiculos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'Helvetica Now Display';
+            src: url('/fonts/HelveticaNowDisplay-BoldIta.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Helvetica Now Display';
+            src: url('/fonts/HelveticaNowDisplay-BoldIta.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+        }
+    </style>
 </head>
 <body>
     <header>
