@@ -82,21 +82,27 @@ class Categoria {
     }
 
 
-    // Método estático para eliminar una categoría según su ID
-    public static function eliminar($id) {
+public static function eliminar($id) {
+    $conexion = Database::connect();
 
-        // Se conecta a la base de datos
-        $conn = Database::connect();
+    // Verificar si hay productos con esta categoría
+    $check = $conexion->prepare("SELECT COUNT(*) FROM productos WHERE categoria_id = ?");
+    $check->bind_param("i", $id);
+    $check->execute();
+    $check->bind_result($count);
+    $check->fetch();
+    $check->close();
 
-        // Prepara la consulta SQL para eliminar una categoría específica por su ID
-        $stmt = $conn->prepare("DELETE FROM categorias WHERE id = ?");
-
-        // Asocia el ID al marcador ? de la consulta
-        // "i" indica que el valor es un número entero (integer)
-        $stmt->bind_param("i", $id);
-
-        // Ejecuta la consulta y devuelve true si se eliminó correctamente, o false si falló
-        return $stmt->execute();
+    if ($count > 0) {
+        // No se puede eliminar, hay productos asociados
+        throw new Exception("No se puede eliminar la categoría porque hay productos asociados.");
     }
+
+    // Si no hay productos, eliminar la categoría
+    $stmt = $conexion->prepare("DELETE FROM categorias WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    return $stmt->execute();
+}
+
 }
 ?>

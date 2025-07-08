@@ -15,10 +15,18 @@
   $productoModel = new Producto();
 
   // Obtener todas las categorías para usarlas en el formulario (por ejemplo, en un <select>)
-  $categorias = Categoria::getAll();
+  $categorias_result = Categoria::getAll();
+  $categorias = [];
+
+  while ($cat = $categorias_result->fetch_assoc()) {
+      $categorias[] = $cat;
+  }
+
+
 
   // Si se envió el formulario (POST), procesar la actualización del producto
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
       // Recoger los datos enviados por el formulario
       $id = $_POST['id'];
       $nombre = $_POST['nombre'];
@@ -71,11 +79,11 @@
     <label class="block">
       Categoría:
       <select name="categoria_id" required class="w-full p-2 rounded text-black">
-        <?php while ($cat = $categorias->fetch_assoc()): ?>
-          <option value="<?= $cat['id'] ?>" <?= $cat['id'] == $producto['categoria_id'] ? 'selected' : '' ?>>
-            <?= htmlspecialchars($cat['nombre']) ?>
-          </option>
-        <?php endwhile; ?>
+      <?php foreach ($categorias as $cat): ?>
+        <option value="<?= $cat['id'] ?>" <?= $cat['id'] == $producto['categoria_id'] ? 'selected' : '' ?>>
+          <?= htmlspecialchars($cat['nombre']) ?>
+        </option>
+      <?php endforeach; ?>
       </select>
     </label>
 

@@ -63,15 +63,18 @@
             case 'empty': echo 'El nombre no puede estar vacío.'; break;
             case 'db': echo 'Error al guardar en la base de datos.'; break;
             case 'notfound': echo 'Categoría no encontrada.'; break;
-            default: echo 'Error desconocido.'; break;
+            case 'conproductos': echo 'No se puede eliminar la categoría porque tiene productos asociados.'; break;
+            case 'unknown': echo 'No se pudo eliminar la categoría. Puede estar relacionada con productos existentes.'; break;
+            default: echo htmlspecialchars($_GET['error']); break;
         }
         ?>
     </div>
 <?php endif; ?>
 
 
+
 <form action="CategoryManagement.php" method="POST" class="mb-6">
-    <label for="nombre_categoria" class="block mb-2 text-sm font-medium text-gray-700">Nueva Categoría</label>
+    <label for="nombre_categoria" class="block mb-2 text-sm font-medium text-white">Nueva Categoría</label>
     <input type="text" id="nombre_categoria" name="nombre" required
            class="w-full p-2 border border-gray-300 rounded mb-4 text-black">
     <button type="submit" name="nueva_categoria" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
