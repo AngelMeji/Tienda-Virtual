@@ -1,23 +1,24 @@
 <?php
-require_once __DIR__ . '/../includes/HeaderLogout.php'; // Importa el encabezado con la navegación y categorías
+  // Importa el archivo HeaderLogout.php que probablemente contiene el menú, categorías y diseño del encabezado
+  require_once __DIR__ . '/../includes/HeaderLogout.php';
 
-if (session_status() === PHP_SESSION_NONE) {
-  session_start();
-}
-if (isset($_SESSION['user_id'])) {
-    // El usuario ya inició sesión, redirigir a otra página (por ejemplo, dashboard o index)
-    header("Location: ../index.php");
-    exit();
-}
+  // Inicia la sesión si aún no ha sido iniciada
+  if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+  }
+
+  // Verifica si el usuario ya tiene una sesión activa (es decir, ya inició sesión)
+  if (isset($_SESSION['user_id'])) {
+      // Si el usuario ya está logueado, lo redirige a otra página, como el inicio o el panel
+      header("Location: ../index.php");
+      exit(); // Detiene la ejecución del script
+  }
 ?>
-
   <!-- Main Content -->
   <main class="flex h-[calc(100vh-64px)]">
-    <!-- Left side: Image (60%) -->
     <div class="w-[60%] bg-cover bg-center" style="background-image: url('uploads/003.jpg')">
     </div>
 
-    <!-- Right side: Login Form (40%) -->
     <div class="w-[40%] bg-black flex items-center justify-center">
       <div class="w-full max-w-md p-8">
         <h2 class="text-3xl font-bold mb-8">INICIAR SESIÓN</h2>

@@ -1,14 +1,12 @@
 <?php
-require_once __DIR__ . '/../includes/HeaderLogout.php'; // Include the header with the logout menu
+  require_once __DIR__ . '/../includes/HeaderLogout.php'; // Include the header with the logout menu
 ?>
 
   <!-- Main Content -->
   <main class="flex h-[calc(100vh-64px)]">
-    <!-- Left side: Image (60%) -->
     <div class="w-[60%] bg-cover bg-center" style="background-image: url('uploads/008.jpg')">
     </div>
 
-    <!-- Right side: Register Form (40%) -->
     <div class="w-[40%] bg-black flex items-center justify-center">
       <div class="w-full max-w-md p-8">
         <h2 class="text-3xl font-bold mb-8">REGISTRARSE</h2>
