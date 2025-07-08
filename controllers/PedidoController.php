@@ -15,12 +15,12 @@
                     session_start(); // Inicia la sesión para acceder a los datos del carrito
                 }
                 
-                if (!isset($_SESSION['user_id'])) {
+                if (!isset($_SESSION['usuario']['id'])) {
                     echo "Debes iniciar sesión para realizar un pedido.";
                     return;
                 }
 
-                $usuario_id = $_SESSION['user_id'];
+                $usuario_id = $_SESSION['usuario']['id'];
                 $provincia = $_POST['departamento'] ?? '';
                 $localidad = $_POST['ciudad'] ?? '';
                 $direccion = $_POST['direccion'] ?? '';

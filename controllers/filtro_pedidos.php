@@ -20,6 +20,7 @@
                     $sql2 = $conexion->query("update pedidos set estado = '$estado2' where id = $id"); // se hace la consulta
                 }
             }
+            header("Location: ManageOrders.php");
         }
     }else{
         $sql = $conexion->query("select * from pedidos"); //si todavia no ha presionado el botón para que el controlador reciba el post igual se hace la consulta para que muestre todos los pedidos

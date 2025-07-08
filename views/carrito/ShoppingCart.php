@@ -50,7 +50,7 @@
           class="border border-white px-6 py-2 text-sm hover:bg-white hover:text-black transition">VACIAR CARRITO</a> <!-- Botón para vaciar el carrito -->
         <div class="flex items-center space-x-6">
           <p class="text-lg font-bold">Total:<br><span class="text-2xl">$<?= number_format($totalCarrito, 0, ',', '.') ?></span></p> <!-- Muestra el total del carrito -->
-          <?php if (isset($_SESSION['user_id'])): ?> <!-- Verifica si el usuario ha iniciado sesión -->
+          <?php if (isset($_SESSION['usuario']['id'])): ?> <!-- Verifica si el usuario ha iniciado sesión -->
             <a href="index.php?controller=pedido&action=formulario"
               class="bg-red-600 px-6 py-3 text-sm font-semibold rounded hover:bg-red-700 transition">
               REALIZAR PEDIDO
