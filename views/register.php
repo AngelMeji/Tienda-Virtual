@@ -12,7 +12,7 @@
         <h2 class="text-3xl font-bold mb-8">REGISTRARSE</h2>
 
         <!-- FORMULARIO CONECTADO AL CONTROLADOR -->
-        <form action="../controllers/UserController.php" method="POST">
+        <form action="index.php?controller=user&action=register" method="POST">
           <label class="block mb-2 text-sm" for="name">Nombre</label>
           <input
             type="text"
