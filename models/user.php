@@ -19,6 +19,7 @@ class User {
         $success = $stmt->execute(); // Ejecuta la consulta y guarda el resultado (true/false)
         $stmt->close(); // Cierra la sentencia preparada
 
+
         return $success; // Retorna el resultado de la ejecución
     }
     //  Para el sign in
