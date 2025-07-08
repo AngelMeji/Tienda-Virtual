@@ -18,33 +18,27 @@ class CarritoController {
             }
 
             // Si ya existe ese producto en el carrito, se aumenta la cantidad
-            $existe = false;
-            foreach ($_SESSION['carrito'] as &$item) {
-                if ($item['id'] == $idProducto) {
-                    $item['cantidad']++;
-                    $existe = true;
-                    break; // Sale del ciclo
-                }
-            }
+            if (isset($_SESSION['carrito'][$idProducto])) {
+                $_SESSION['carrito'][$idProducto]['cantidad']++;
+                $existe = true;
+            } else{
+                // Si el producto no está en el carrito, se obtiene desde la base de datos
+                $producto = new Producto(); // Instancia el modelo Producto
+                $detalle = $producto->getOne($idProducto); // Obtiene el detalle del producto
 
-            // Si no existe aún, se obtiene desde la base de datos y se agrega
-            if (!$existe) {
-                $producto = new Producto(); // Crea una nueva instancia del modelo Producto
-                $detalle = $producto->getOne($idProducto); // Obtiene los datos del producto con el id proporcionado
-
-                // Si el producto fue encontrado, se agrega al carrito
+                // Si el producto fue encontrado en la base de datos
                 if ($detalle) {
-                    $_SESSION['carrito'][] = [
-                        'id' => $detalle['id'],
-                        'nombre' => $detalle['nombre'],
-                        'precio' => $detalle['precio'],
-                        'imagen' => $detalle['imagen'],
-                        'cantidad' => 1
+                    // Agrega el producto al carrito usando el id como clave
+                    $_SESSION['carrito'][$idProducto] = [
+                        'id'      => $detalle['id'],
+                        'nombre'  => $detalle['nombre'],
+                        'precio'  => $detalle['precio'],
+                        'imagen'  => $detalle['imagen'],
+                        'cantidad'=> 1
                     ];
                 }
-            }
+            }   
         }
-
         // Redirecciona a la vista del carrito después de agregar el producto
         header("Location: index.php?controller=carrito&action=ver");
     }
@@ -73,16 +67,24 @@ class CarritoController {
         header("Location: index.php?controller=carrito&action=ver");  // Redirecciona a la vista del carrito (que ahora estará vacío)
     }
 
-    public function cantidadProductos(){
-        if(!isset($_SESSION["contador"])){
-            $_SESSION["contador"] = 0;
+    public function actualizarCantidad() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $productoId = $_POST['producto_id'];
+            // Verifica si el producto está en el carrito
+            if (isset($_SESSION['carrito'][$productoId])) {
+                // Aumenta cantidad
+                if (isset($_POST['aumentar'])) {
+                    $_SESSION['carrito'][$productoId]['cantidad']++;
+                }
+                // Disminuye cantidad solo si es mayor que 1
+                if (isset($_POST['disminuir']) && $_SESSION['carrito'][$productoId]['cantidad'] > 1) {
+                    $_SESSION['carrito'][$productoId]['cantidad']--;
+                }
+            }
         }
-        
-        if(isset($_POST["aumentar"])){
-            $_SESSION["contador"]++;
-        }elseif(isset($_POST["disminuir"])){
-            $_SESSION["contador"]--;
-        }
+
+        // Redirecciona de vuelta al carrito
+        header("Location: index.php?controller=carrito&action=ver");
     }
 
     

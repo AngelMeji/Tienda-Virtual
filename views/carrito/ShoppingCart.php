@@ -19,12 +19,26 @@
             <img src="uploads/<?= $item['imagen'] ?>" alt="<?= $item['nombre'] ?>" class="w-32 rounded-md" /> <!-- Muestra la imagen del producto-->
             <div class="flex-1">
               <p class="font-semibold"><?= $item['nombre'] ?></p> <!-- Muestra el nombre del producto-->  
-              <p class="text-lg font-bold mt-1">$<?= number_format($item['precio'], 0, ',', '.') ?></p> <!-- Muestra el precio del producto-->  
-              <p class="text-sm mt-1">Cantidad: <span class="font-semibold"><?= $item['cantidad'] ?></span></p> <!-- Muestra la cantidad del producto-->    
+              <p class="text-lg font-bold mt-1">$<?= number_format($item['precio'], 0, ',', '.') ?></p> <!-- Muestra el precio del producto-->     
               <p class="text-sm mt-1">Total: <span class="font-semibold">$<?= number_format($subtotal, 0, ',', '.') ?></span></p> <!-- Muestra el subtotal del producto-->  
-          </div>
-            <a href="index.php?controller=carrito&action=eliminar&id=<?= $item['id'] ?>"  
+            </div>
+            <div class="flex flex-col items-center space-y-2">
+              <!-- Formulario cantidad -->
+              <form action="index.php?controller=carrito&action=actualizarCantidad" method="POST" class="flex items-center space-x-2">
+                <input type="hidden" name="producto_id" value="<?= $item['id'] ?>">
+
+                <button type="submit" name="disminuir"
+                  class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm font-semibold">-</button>
+
+                <span class="px-3 text-white font-bold"><?= $item['cantidad'] ?></span>
+
+                <button type="submit" name="aumentar"
+                  class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm font-semibold">+</button>
+              </form>
+              <!-- Botón eliminar -->
+              <a href="index.php?controller=carrito&action=eliminar&id=<?= $item['id'] ?>"  
               class="bg-red-600 px-6 py-2 rounded text-sm font-semibold hover:bg-red-700 transition">ELIMINAR</a> <!-- Botón para eliminar el producto del carrito-->
+            </div>
           </div>
         <?php endforeach; ?>
 
