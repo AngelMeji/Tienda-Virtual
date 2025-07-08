@@ -1,37 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Registro - GGA Vehículos</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    html, body {
-      height: 100%;
-      overflow: hidden;
-    }
-  </style>
-</head>
-<body class="bg-black text-white font-sans">
-
-  <!-- Navbar -->
-  <nav class="flex items-center justify-between p-4 bg-black text-white">
-    <div class="text-2xl font-bold">
-      <span class="text-gray-300">GGA</span> <span class="text-red-600">vehículos</span>
-    </div>
-    <ul class="flex gap-6">
-      <li><a href="#" class="hover:text-red-500">Inicio</a></li>
-      <li><a href="#" class="hover:text-red-500">Categoría 1</a></li>
-      <li><a href="#" class="hover:text-red-500">Categoría 2</a></li>
-      <li><a href="#" class="hover:text-red-500">Categoría 3</a></li>
-    </ul>
-    <a href="login.php" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">INICIAR SESIÓN</a>
-  </nav>
+<?php
+require_once __DIR__ . '/../includes/HeaderLogout.php'; // Include the header with the logout menu
+?>
 
   <!-- Main Content -->
   <main class="flex h-[calc(100vh-64px)]">
     <!-- Left side: Image (60%) -->
-    <div class="w-[60%] bg-cover bg-center" style="background-image: url('../uploads/008.jpg')">
+    <div class="w-[60%] bg-cover bg-center" style="background-image: url('uploads/008.jpg')">
     </div>
 
     <!-- Right side: Register Form (40%) -->

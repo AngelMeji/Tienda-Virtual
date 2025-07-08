@@ -1,7 +1,7 @@
 <?php 
 
 require_once __DIR__ . '/../models/Producto.php';
-require_once __DIR__ . '/../models/Categoria.php';
+require_once __DIR__ . '/../models/Producto.php';
 
 // Define la clase ProductoController que manejará las acciones relacionadas con productos
 class ProductoController {
@@ -10,7 +10,7 @@ class ProductoController {
         $producto = new Producto(); // Crea una instancia de la clase Producto
         $productos = $producto->getDestacados(); // Obtiene los productos destacados
 
-        require_once __DIR__ . '/../views/productos/index.php'; // Carga la vista que muestra los productos destacados (página de inicio)
+        require_once './views/productos/index.php'; // Carga la vista que muestra los productos destacados (página de inicio)
     }
 
     // Método para mostrar productos filtrados por categoría
@@ -24,7 +24,7 @@ class ProductoController {
             $nombreCategoria = Categoria::getNombreById($id);
 
             // Pasar a la vista
-            require_once __DIR__ . '/../views/productos/categoria.php';
+            require_once './views/productos/categoria.php';
         } else {
             echo "Categoría no especificada."; // Si no se pasa un ID válido, se muestra un mensaje de error
         }
@@ -37,7 +37,11 @@ class ProductoController {
             $producto = new Producto(); // Crea una nueva instancia del modelo Producto
             $productoDetalle = $producto->getOne($id); // Obtiene los detalles del producto mediante su ID
 
-            require_once __DIR__ . '/../views/productos/ver.php'; // Carga la vista que muestra los detalles del producto seleccionado
+            if ($productoDetalle) {
+                require_once __DIR__ . '/../views/productos/ProductDescription.php'; // Carga la vista que muestra los detalles del producto seleccionado
+            } else {
+                echo "<p style='color:red'>Producto no encontrado en la base de datos.</p>";
+            }
         } else { 
             echo "Producto no especificado."; // Si no se pasa un ID válido, se muestra un mensaje de error
         }

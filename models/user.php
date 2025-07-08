@@ -1,5 +1,5 @@
 <?php
-require_once '../config/conexion.php'; // Importa la clase Database para conectarse a la BD
+require_once __DIR__ . '/../config/conexion.php'; // Importa la clase Database para conectarse a la BD
 
 class User {
     private $conn; // Propiedad para la conexión
@@ -9,26 +9,17 @@ class User {
     }
 
     // Método para registrar al usuario
-    public function register($name, $email, $password) {
+    public function register($nombre, $email, $password) {
         // Prepara la consulta SQL con placeholders (?)
-        $stmt = $this->conn->prepare("INSERT INTO usuarios (name, email, password) VALUES (?, ?, ?)");
+        $stmt = $this->conn->prepare("INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)");
+        if (!$stmt) return false; // Si falla la preparación, retorna false
+        
+        
+        $stmt->bind_param("sss", $nombre, $email, $password); // Asocia los parámetros a los placeholders (3 strings)
+        $success = $stmt->execute(); // Ejecuta la consulta y guarda el resultado (true/false)
+        $stmt->close(); // Cierra la sentencia preparada
 
-        // Si falla la preparación, retorna false
-        if (!$stmt) {
-            return false;
-        }
-
-        // Asocia los parámetros a los placeholders (3 strings)
-        $stmt->bind_param("sss", $name, $email, $password);
-
-        // Ejecuta la consulta y guarda el resultado (true/false)
-        $success = $stmt->execute();
-
-        // Cierra la sentencia preparada
-        $stmt->close();
-
-        // Retorna el resultado de la ejecución
-        return $success;
+        return $success; // Retorna el resultado de la ejecución
     }
     //  Para el sign in
     public function login($email) {

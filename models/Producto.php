@@ -1,6 +1,6 @@
 <?php
 
-require_once  '../config/conexion.php';
+require_once __DIR__ . '/../config/conexion.php';
 
 // Define la clase Producto, que se encargará de interactuar con la tabla de productos
 class Producto{

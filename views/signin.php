@@ -1,37 +1,20 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GTA Vehículos</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body, html {
-      height: 100%;
-      overflow: hidden;
-    }
-  </style>
-</head>
-<body class="bg-black text-white font-sans">
+<?php
+require_once __DIR__ . '/../includes/HeaderLogout.php'; // Importa el encabezado con la navegación y categorías
 
-  <!-- Navbar -->
-  <nav class="flex items-center justify-between p-4 bg-black text-white">
-    <div class="text-2xl font-bold">
-      <span class="text-gray-300">GTA</span> <span class="text-red-600">vehículos</span>
-    </div>
-    <ul class="flex gap-6">
-      <li><a href="#" class="hover:text-red-500">Inicio</a></li>
-      <li><a href="#" class="hover:text-red-500">Categoría 1</a></li>
-      <li><a href="#" class="hover:text-red-500">Categoría 2</a></li>
-      <li><a href="#" class="hover:text-red-500">Categoría 3</a></li>
-    </ul>
-    <a href="register.php" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">REGISTRARSE</a>
-  </nav>
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+if (isset($_SESSION['user_id'])) {
+    // El usuario ya inició sesión, redirigir a otra página (por ejemplo, dashboard o index)
+    header("Location: ../index.php");
+    exit();
+}
+?>
 
   <!-- Main Content -->
   <main class="flex h-[calc(100vh-64px)]">
     <!-- Left side: Image (60%) -->
-    <div class="w-[60%] bg-cover bg-center" style="background-image: url('../uploads/003.jpg')">
+    <div class="w-[60%] bg-cover bg-center" style="background-image: url('uploads/003.jpg')">
     </div>
 
     <!-- Right side: Login Form (40%) -->
@@ -40,7 +23,7 @@
         <h2 class="text-3xl font-bold mb-8">INICIAR SESIÓN</h2>
 
         <!-- Conexión al controlador -->
-        <form action="../controllers/UserController.php" method="POST">
+        <form action="index.php?controller=user&action=login" method="POST">
           <label class="block mb-2 text-sm" for="email">Correo Electrónico</label>
           <input
             type="email"
@@ -72,5 +55,4 @@
       </div>
     </div>
   </main>
-</body>
-</html>
+

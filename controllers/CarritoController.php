@@ -1,6 +1,7 @@
 <?php
-
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once __DIR__ . '/../models/Producto.php';
 
 
@@ -48,7 +49,7 @@ class CarritoController {
     }
 
     public function ver() { // Función para mostrar la vista del carrito
-        require_once __DIR__ . '/../views/carrito/ver.php';
+        require_once __DIR__ . '/../views/carrito/ShoppingCart.php'; // Incluye la vista del carrito
     }
 
     // Opcional: eliminar producto
