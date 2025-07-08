@@ -4,8 +4,10 @@
   }
   require_once "config/conexion.php";
   $conexion = Database::connect(); 
+
   require_once "includes/HeaderLogout.php";
 ?>
+
   <!-- Contenido principal -->
   <main class="px-10 py-14 max-w-5xl mx-auto">
     <h1 class="text-2xl font-bold mb-10">Todos mis pedidos</h1>
@@ -22,6 +24,7 @@
         </thead>
         <tbody>
           <?php
+
             $id_usuario = $_SESSION['usuario']['id'];
 
             if (!$id_usuario) {
