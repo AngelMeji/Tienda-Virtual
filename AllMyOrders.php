@@ -1,3 +1,7 @@
+<?php
+  require_once "config/conexion.php";
+  $conexion = Database::connect(); 
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,7 +13,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-white font-sans">
-
   <header class="bg-[#0d0d0d] py-4">
     <div class="max-w-[1300px] mx-auto px-4 relative flex items-center justify-between">
 
@@ -36,6 +39,7 @@
       </div>
     </div>
   </header>
+  
 
   <!-- Contenido principal -->
   <main class="px-10 py-14 max-w-5xl mx-auto">
@@ -52,18 +56,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="border-b border-white">
-            <td class="py-3">2</td>
-            <td class="py-3">$1.600.000</td>
-            <td class="py-3">2025-04-02</td>
-            <td class="py-3">Pendiente</td>
-          </tr>
-          <tr>
-            <td class="py-3">1</td>
-            <td class="py-3">$2.500.000</td>
-            <td class="py-3">2025-04-02</td>
-            <td class="py-3">Enviado</td>
-          </tr>
+          <?php
+            
+            $id = $_GET["id"];
+
+            $sql = $conexion->query("select * from pedidos where usuario_id = $id");
+
+            while($data = $sql->fetch_object()){
+          ?>
+          
+            <tr class="border-b border-white">
+              <td class="py-3"><?= $data -> id?></td>
+              <td class="py-3"><?= $data -> coste?></td>
+              <td class="py-3"><?= $data -> fecha?></td>
+              <td class="py-3"><?= $data -> estado?></td>
+            </tr>
+          <?php echo "<br>"; }?>
         </tbody>
       </table>
     </div>

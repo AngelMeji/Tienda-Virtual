@@ -1,5 +1,6 @@
 <?php
-    require_once  '../config/conexion.php';
+    require_once  'config/conexion.php';
+    $conexion = Database::connect();
     
     if($_SERVER["REQUEST_METHOD"] === "POST"){
         $estado = $_POST["estado"];
@@ -17,7 +18,6 @@
                 if(!empty($_POST["cambiar_estado"][$id])){
                     $estado2 = $_POST["cambiar_estado"][$id]; // se guarda el estado seleccionado en esta variable
                     $sql2 = $conexion->query("update pedidos set estado = '$estado2' where id = $id"); // se hace la consulta
-                    echo "Pedido $id actualizado a: $estado2<br>"; // se le notifica al usuario si se cambió bien
                 }
             }
         }

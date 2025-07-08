@@ -11,7 +11,7 @@ class User {
     // Método para registrar al usuario
     public function register($name, $email, $password) {
         // Prepara la consulta SQL con placeholders (?)
-        $stmt = $this->conn->prepare("INSERT INTO usuarios (name, email, password) VALUES (?, ?, ?)");
+        $stmt = $this->conn->prepare("INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)");
 
         // Si falla la preparación, retorna false
         if (!$stmt) {
