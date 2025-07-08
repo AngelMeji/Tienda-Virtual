@@ -84,7 +84,7 @@
                 <li class="px-4 py-2"><a href="ProductManagement.php">Gestionar productos</a></li>
                 <li class="px-4 py-2"><a href="CategoryManagement.php">Gestionar categorías</a></li>
                 <li class="px-4 py-2"><a href="ManageOrders.php">Gestionar pedidos</a></li>
-                <li class="px-4 py-2"><a href="AllMyOrders.php">Mis pedidos</a></li>
+                <li class="px-4 py-2"><a href="index.php?controller=pedido&action=misPedidos">Mis pedidos</a></li>
                 <li class="px-4 py-2"><a href="index.php?controller=user&action=logout">Cerrar sesión</a></li>
               <?php else: ?>
                 <li class="px-4 py-2 border-b font-semibold">Usuario</li>

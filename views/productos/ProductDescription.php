@@ -9,7 +9,7 @@
 
     <!-- Imagen + info -->
     <div class="max-w-md">
-      <img src="uploads/<?= $productoDetalle['imagen'] ?>" alt="<?= $productoDetalle['nombre'] ?>" class="rounded-lg mb-2" /> 
+      <img src="<?= $productoDetalle['imagen'] ?>" alt="<?= $productoDetalle['nombre'] ?>" class="rounded-lg mb-2" /> 
       <p class="italic text-sm text-gray-300"><?= $productoDetalle['nombre'] ?> (<?= $productoDetalle['categoria'] ?? 'Producto' ?>)</p>
       <!-- Verifica el stock -->
       <p class="mt-4">

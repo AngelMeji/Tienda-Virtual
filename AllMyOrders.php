@@ -49,9 +49,4 @@
     </div>
   </main>
 
-    <!-- Footer -->
-    <footer class="bg-neutral-900 text-center text-sm py-4 text-gray-400">
-      Desarrollado por el grupo GTA ADSO | SENA CDITI 2025
-    </footer>
-  </body>
-</html>
+

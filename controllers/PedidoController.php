@@ -71,6 +71,6 @@
             }
 
             // Incluye la vista que mostrará los pedidos
-            require_once './views/pedido/MisPedidos.php';
+            require_once './AllMyOrders.php';
         }
     }
