@@ -53,4 +53,24 @@
                 require_once 'views/pedido/ConfirmedOrder.php';
             }
         }
+        public function misPedidos() {
+            if (!isset($_SESSION['usuario']['id'])) {
+                echo "Debes iniciar sesión para ver tus pedidos.";
+                return;
+            }
+
+            $usuarioId = $_SESSION['usuario']['id'];
+
+            $conexion = Database::connect();
+            $sql = $conexion->query("SELECT * FROM pedidos WHERE usuario_id = $usuarioId");
+
+            // Guarda los resultados en una variable para la vista
+            $pedidos = [];
+            while ($pedido = $sql->fetch_object()) {
+                $pedidos[] = $pedido;
+            }
+
+            // Incluye la vista que mostrará los pedidos
+            require_once './views/pedido/MisPedidos.php';
+        }
     }

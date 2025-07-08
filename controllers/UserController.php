@@ -11,7 +11,7 @@
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
 
                 // Obtiene los datos del formulario y elimina espacios al inicio y final
-                $nombre   = trim($_POST['nombre']);
+                $nombre   = trim($_POST['name']);
                 $email    = trim($_POST['email']);
                 $password = trim($_POST['password']);
 
